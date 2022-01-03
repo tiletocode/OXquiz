@@ -20,8 +20,7 @@ public class QuizApplication {
     QuizRepository repository;
 
     private void execute() {
-//        showOne();
-//        updateQuiz();
+        showOne();
         updateQuiz();
     }
 
@@ -61,7 +60,7 @@ public class QuizApplication {
 
     private void updateQuiz() {
         System.out.println("***** 업데이트 처리 시작 *****");
-        Quiz quiz1 = new Quiz(1, "Integer는 원시 자료형입니까?", false, "tiletocode");
+        Quiz quiz1 = new Quiz(1, "int는 원시 자료형입니까?", true, "tiletocode");
         quiz1 = repository.save(quiz1);
         System.out.println("업데이트된 데이터: "+quiz1);
         System.out.println("***** 업데이트 처리 완료 *****");
@@ -69,7 +68,7 @@ public class QuizApplication {
     
     private  void deleteQuiz() {
         System.out.println("***** 삭제 처리 시작 *****");
-        repository.deleteById(6);
+        repository.deleteById(2);
         System.out.println("***** 삭제 처리 완료 *****");
     }
 }
