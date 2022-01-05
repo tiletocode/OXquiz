@@ -107,12 +107,35 @@ public class QuizController {
         return form;
     }
 
-
+    @PostMapping("/delete")
     public String delete(@RequestParam("id") String id, Model model, RedirectAttributes redirectAttributes) {
         service.deleteQuizById(Integer.parseInt(id));
         redirectAttributes.addFlashAttribute("delcomplete", "삭제완료.");
         return "redirect:/quiz";
     }
 
+    @GetMapping("/play")
+    public String showQuiz(QuizForm quizForm, Model model) {
+        Optional<Quiz> quizOptional = service.selectOneRandomQuiz();
 
+        if(quizOptional.isPresent()) {
+            Optional<QuizForm> quizFormOptional = quizOptional.map(t -> makeQuizForm(t));
+            quizForm = quizFormOptional.get();
+        } else {
+            model.addAttribute("msg", "퀴즈 문제가 없습니다.");
+            return "play";
+        }
+        model.addAttribute("quizForm", quizForm);
+        return "play";
+    }
+
+    @PostMapping("/check")
+    public String checkQuiz(QuizForm quizForm, @RequestParam Boolean answer, Model model) {
+        if(service.checkQuiz(quizForm.getId(), answer)) {
+            model.addAttribute("msg", "정답입니다.");
+        } else {
+            model.addAttribute("msg", "오답입니다");
+        }
+        return "answer";
+    }
 }

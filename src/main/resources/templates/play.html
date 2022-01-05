@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OX퀴즈 서비스: Play</title>
+</head>
+<body>
+    <h1>OX퀴즈 서비스: Play</h1>
+    <h3>퀴즈</h3>
+    <th:block th:if="${msg}">
+        <p th:text="${msg}" style="color: red"></p>
+        <a th:href="@{/quiz/}">메인화면으로 이동</a>
+    </th:block>
+    <th:block th:unless="${msg}">
+        <p th:text="${quizForm.question}">퀴즈내용</p>
+        <form th:action="@{/quiz/check}" th:object="${quizForm}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <button name="answer" value="true">O</button>
+            <button name="answer" value="false">X</button>
+        </form>
+    </th:block>
+</body>
+</html>

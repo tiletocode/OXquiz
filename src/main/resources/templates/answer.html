@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OX퀴즈 서비스: 결과</title>
+</head>
+<body>
+<h1>OX퀴즈 서비스: 결과</h1>
+<h2 th:text="${msg}" style="color: red">메세지 표시</h2>
+    <a th:href="@{/quiz/play}">계속 풀기</a>
+    <a th:href="@{/quiz}">메인화면으로</a>
+</body>
+</html>
