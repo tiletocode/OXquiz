@@ -49,6 +49,7 @@ public class QuizController {
 
         if(!bindingResult.hasErrors()) {
             service.insertQuiz(quiz);
+            //FlashAttribute: 임시로 담을값
             redirectAttributes.addFlashAttribute("complete", "등록이 완료되었습니다.");
             return "redirect:/quiz";
         } else {
@@ -81,9 +82,11 @@ public class QuizController {
         if(!result.hasErrors()) {
             service.updateQuiz(quiz);
             redirectAttributes.addFlashAttribute("complete", "변경이 완료되었습니다.");
+            return "redirect:/quiz/"+quiz.getId();
+        } else {
+            makeUpdateModel(quizForm, model);
+            return "crud";
         }
-        makeUpdateModel(quizForm, model);
-        return "crud";
     }
 
     private Quiz makeQuiz(QuizForm quizForm) {

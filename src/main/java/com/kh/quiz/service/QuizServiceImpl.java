@@ -28,6 +28,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Optional<Quiz> selectOneRandomQuiz() {
         Integer randomId = repository.getRandomId();
+        System.out.println(Optional.empty());
         if(randomId == null) {
             return Optional.empty();
         }

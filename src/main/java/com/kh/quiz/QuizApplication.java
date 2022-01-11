@@ -33,7 +33,7 @@ public class QuizApplication {
         //showOne();
         //updateQuiz();
         //deleteQuiz();
-        runQuiz();
+        //runQuiz();
     }
 
     private void setup() {
